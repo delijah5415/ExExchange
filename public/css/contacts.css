@@ -1,0 +1,96 @@
+.contacts_card {
+    background-color: #000b1b2a;
+    backdrop-filter: blur(10px);
+    margin: 0 150px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.contacts_card h1 {
+    margin-bottom: 20px;
+    color: #ecf0f1;
+    font-size: 32px;
+    text-align: center;
+}
+
+.icon_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap; /* Додаємо перенесення для маленьких екранів */
+}
+
+.icon_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
+
+.icon_item img {
+    width: 50px;
+    height: 50px;
+}
+
+.info_title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #ecf0f1;
+}
+
+.info_text {
+    font-size: 16px;
+    color: #ecf0f1;
+}
+
+.help__text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #d9dcdd;
+    margin-top: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .contacts_card {
+        margin: 0 20px 20px 20px;
+    }
+
+    .contacts_card h1 {
+        font-size: 1.8rem;
+    }
+
+    .icon_row {
+        gap: 20px;
+    }
+
+}
+
+@media (min-width: 801px) and (max-width: 1000px) {
+    .contacts_card {
+        margin: 0 50px;
+    }
+
+    .contacts_card h1 {
+        font-size: 1.9rem;
+    }
+
+    .icon_row {
+        gap: 20px;
+    }
+
+}
+
+@media (min-width: 1001px) and (max-width: 1450px) {
+    .contacts_card {
+        margin: 0 50px;
+    }
+}

@@ -1,0 +1,177 @@
+html, body {
+    height: 100%; /* Встановлюємо висоту 100% для всього документа */
+    margin: 0; /* Прибираємо відступи */
+}
+
+body {
+    display: flex;
+    flex-direction: column; 
+}
+
+main {
+    flex-grow: 1;
+}
+
+footer {
+    margin-top: 50px;
+    color: #ecf0f1; /* Світлий текст */
+    margin: 80px 150px 0 150px;
+    padding-bottom: 20px;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-about, .footer-services, .footer-contact {
+    flex: 1;
+    min-width: 200px;;
+}
+
+.footer-about h4, .footer-services h4, .footer-contact h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.footer-about ul, .footer-services ul, .footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-about ul li, .footer-services ul li, .footer-contact ul li {
+    margin-bottom: 8px;
+}
+
+.footer-about ul li a, .footer-services ul li a, .footer-contact ul li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.footer-about ul li a:hover, .footer-services ul li a:hover, .footer-contact ul li a:hover {
+    color: #0088ff;
+}
+
+.footer-contact ul li a img{
+    height: 35px;
+    transition: box-shadow 0.3s ease;
+    border-radius: 100%;
+}
+
+.footer-contact ul li a img:hover{
+    box-shadow: 0 0 5px 3px #0088ff;
+}
+
+/* Стилі для спонсорів */
+.footer-sponsors {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.footer-sponsors h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.sponsors {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sponsor-img {
+    height: 30px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.sponsor-img:hover {
+    transform: scale(1.1);
+}
+
+/* Стилі для авторських прав */
+.footer-copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+/* Адаптивність */
+@media (max-width: 800px) {
+    footer {
+        margin: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer-links {
+        flex-direction: column; 
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-about, .footer-services, .footer-contact {
+        text-align: center;
+        flex: unset;
+        min-width: 0; 
+    }
+
+    .footer-contact ul li a img {
+        height: 40px;
+    }
+
+    .sponsors {
+        flex-direction: column; 
+        gap: 15px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1000px) {
+    footer {
+        margin: 50px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap; /* Блоки переходять на новий рядок за потреби */
+        gap: 15px; /* Менший відступ між блоками */
+    }
+
+    .footer-about, .footer-services, .footer-contact {
+        min-width: 200px; /* Встановлення мінімальної ширини */
+        flex: 1; /* Розтягування блоків рівномірно */
+    }
+
+    .sponsors {
+        gap: 10px; /* Менший проміжок між логотипами спонсорів */
+    }
+
+    .sponsor-img {
+        height: 25px; /* Зменшення розміру логотипів */
+    }
+}
+
+@media (min-width: 1001px) and (max-width: 1450px) {
+    footer {
+        margin: 80px 50px 0 50px; /* Помірні відступи */
+    }
+
+    .footer-links {
+        flex-wrap: wrap; /* Блоки переходять на новий рядок */
+        gap: 20px; /* Достатній відступ між блоками */
+    }
+
+    .sponsors {
+        gap: 15px; /* Відступ між логотипами спонсорів */
+    }
+
+    .sponsor-img {
+        height: 30px; /* Оптимальний розмір логотипів */
+    }
+}

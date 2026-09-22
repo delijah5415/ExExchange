@@ -1,0 +1,460 @@
+/* Загальні стилі */
+html, body {
+    height: 100%; /* Забезпечує покриття початкової висоти */
+    margin: 0; /* Видаляє стандартні відступи */
+    font-family: Montserrat, sans-serif;
+    background: linear-gradient(135deg, #001F3F 0%, #0074D9 100%);
+    background-repeat: no-repeat; /* Забороняє повторення градієнта */
+    background-size: cover; /* Розтягує градієнт на весь простір */
+    background-attachment: fixed; /* Фіксує фон, щоб він не обрізався */
+}
+
+
+h1,
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+/* Стилі для основних карток */
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0 150px 0 150px;
+}
+
+.card,
+.info_card {
+    background-color: #000b1b2a;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    width: 30%;
+    flex-grow: 1;
+}
+
+.text_card {
+    color: #ecf0f1;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.text_choose {
+    color: #ecf0f1;
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Стилі для форм */
+.card .form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    --width-of-input: 100%;
+    --border-height: 1px;
+    --border-before-color: #0074D9;
+    --border-after-color: #0074D9;
+    --input-hovered-color: #0074d911;
+    position: relative;
+    width: var(--width-of-input);
+}
+
+/* Іконка валюти */
+.currency-img {
+    height: 34px;
+    position: absolute;
+    left: 0.5em;
+    /* Відступ від лівого краю */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Не блокує кліки по інпуту */
+}
+
+/* Символ валюти */
+.text_currency {
+    font-size: 0.9rem;
+    color: #ecf0f1;
+    position: absolute;
+    right: 0.5em;
+    /* Відступ від правого краю */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Не блокує кліки по інпуту */
+}
+
+/* Стилізація інпуту */
+.input {
+    color: #ecf0f1;
+    font-size: 18px;
+    font-family: Montserrat, sans-serif;
+    background-color: transparent;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 3.2em;
+    /* Відступ для іконки */
+    padding-right: 2.5em;
+    /* Відступ для тексту символу */
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+/* Анімований нижній бордер */
+.input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s;
+}
+
+.agree_link {
+    color: #0088ff;
+    text-decoration: none;
+}
+
+.agree_link:hover {
+    text-decoration: underline;
+}
+
+/* Hover на інпут */
+.input:hover {
+    background: var(--input-hovered-color);
+}
+
+.input:focus {
+    outline: none;
+}
+
+/* Анімований бордер при фокусі */
+.input:focus~.input-border {
+    width: 100%;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.text_currency {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Стилі для вибору валюти */
+.currency-list {
+    font-weight: 500;
+    list-style: none;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.currency-list {
+    font-weight: 500;
+    list-style: none;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 0;
+}
+
+.currency {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 15px;
+    border: 1px solid #0074d954;
+    /* Початковий зелений бордер */
+    color: #ecf0f1;
+    overflow: hidden;
+    /* Не дозволяє псевдоелементу виходити за межі */
+    transition: transform 1s ease, color 0.5s ease;
+    /* Анімація для трансформації та зміни кольору */
+    cursor: pointer;
+}
+
+.currency::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    /* Початковий стан (не видно) */
+    z-index: -1;
+    /* Псевдоелемент знаходиться під контентом */
+}
+
+.currency:hover::before {
+    opacity: 1;
+    /* Показати градієнт на наведенні */
+}
+
+.currency:hover {
+    transform: scale(1);
+    /* Анімація трансформації (не змінюється в масштабі) */
+    color: #ecf0f1;
+}
+
+.currency.selected {
+    background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+    color: #ecf0f1;
+}
+
+.currency.disabled {
+    opacity: 0.1;
+    background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+    color: #ecf0f1;
+    cursor: not-allowed;
+}
+
+
+.currency.disabled:hover {
+    pointer-events: none;
+    /* Запобігає взаємодії з недоступними елементами */
+}
+
+.currency .title {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.currency-icon {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    transition: transform 0.6s;
+}
+
+.currency:hover .currency-icon {
+    transform: rotate(360deg);
+}
+
+
+/* Загальні стилі для payment картки */
+
+/* Контейнер для інформації про оплату */
+.payment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.arrow-left-icon {
+    padding: 10px;
+    height: 50px;
+}
+
+/* Окремий блок валюти */
+.payment-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+    /* Білий фон */
+    padding: 10px;
+    border-radius: 15px;
+    /* Легка тінь */
+    width: 48%;
+    /* Ширина кожного блоку */
+}
+
+/* Зображення валюти */
+.payment-info .info-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Текст валюти */
+.payment-info .info-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: #ecf0f1;
+    /* Середньо-сірий колір */
+}
+
+.payment-info .info-text span {
+    font-weight: 500;
+    font-size: 16px;
+    color: #ecf0f1;
+    /* Темно-сірий */
+}
+
+/* Обмінний курс */
+.exchange-rate {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ecf0f1;
+    background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+/* Форма введення даних */
+.form_info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Поля введення */
+.form_info input {
+    font-family: Montserrat, sans-serif;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Стиль чекбоксу */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #ecf0f1;
+    /* Сірий текст */
+}
+
+.checkbox-container input[type="checkbox"] {
+    border-radius: 2;
+    width: 16px;
+    height: 16px;
+    accent-color: #0074D9;
+    /* Колір чекбокса */
+}
+
+/* Кнопка */
+/* Основний стиль кнопки */
+.exchange_button {
+    font-family: Montserrat, sans-serif;
+    margin-top: 15px;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ecf0f1;
+    background-color: #007bff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.exchange_button:hover {
+    background-color: #0068d8;
+}
+
+
+/* Визначення анімації */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width: 800px) {
+    .payment-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payment-info .info-item {
+        width: 100%;
+    }
+
+    .img-item {
+        align-self: flex-start;
+    }
+
+    .arrow-left-icon {
+        transform: rotate(90deg);
+        image-rendering: crisp-edges;
+    }
+
+    .cards {
+        flex-direction: column;
+        gap: 20px;
+        margin: 20px;
+    }
+
+    .reviews {
+        margin: 20px;
+    }
+
+    .card,
+    .info_card {
+        width: 100%;
+        /* Картки займають всю ширину контейнера */
+    }
+
+    .review-cards {
+        flex-direction: column;
+        /* Відгуки в колонку */
+        gap: 15px;
+    }
+
+    .card-review {
+        width: 100%;
+        /* Відгуки займають всю ширину контейнера */
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1450px) {
+    .cards {
+        margin: 0 50px 0 50px;
+    }
+
+    .reviews {
+        margin: 50px;
+    }
+
+    .payment-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payment-info .info-item {
+        width: 100%;
+    }
+
+    .img-item {
+        align-self: flex-start;
+    }
+
+    .arrow-left-icon {
+        transform: rotate(90deg);
+        image-rendering: crisp-edges;
+    }
+
+}
