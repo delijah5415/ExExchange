@@ -1,0 +1,129 @@
+/* Загальні стилі для хедеру */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 150px 50px 150px;
+    font-weight: 400;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+}
+
+header .logotype img {
+    height: 20px;
+}
+
+header .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+header .menu-toggle span {
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+}
+
+/* Стилі для головного меню */
+nav.main-nav {
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+nav.main-nav ul.nav__links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav.main-nav ul.nav__links li {
+    margin: 0 15px;
+}
+
+nav.main-nav ul.nav__links li a {
+    text-decoration: none;
+    color: #ecf0f1; /* Зелений колір тексту */
+    font-size: 17px;
+    border-bottom: 1px solid transparent; /* Тонкий бордер за замовчуванням */
+    transition: border-color 0.3s ease, color 0.3s ease; /* Плавний перехід */
+}
+
+nav.main-nav ul.nav__links li a:hover, 
+nav.main-nav ul.nav__links li a.active {
+    color: #ecf0f1; /* Світліший зелений колір тексту при наведенні */
+    border-bottom: 1px solid #ecf0f1; /* Тонкий бордер при наведенні */
+}
+
+
+
+/* Стилі для бургер-меню (тільки для маленьких екранів) */
+@media (max-width: 800px) {
+    header {
+        padding: 35px 20px 35px 20px;
+    } 
+
+    nav.main-nav {
+        display: flex; /* Встановлюємо флекс для мобільного меню */
+        flex-direction: column; /* Встановлюємо вертикальне розташування елементів */
+        width: 100%;
+        position: absolute;
+        top: 90px;
+        left: 0;
+        background-color: #00437e;
+        padding: 20px;
+        box-sizing: border-box;
+        opacity: 0;
+        transform: translateY(-20px);
+        pointer-events: none; /* Забороняємо взаємодію, поки меню не відкрите */
+        transition: opacity 0.3s ease, transform 0.3s ease, pointer-events 0s ease 0.3s; /* Додаємо анімацію */
+    }
+
+    header .menu-toggle {
+        display: flex; /* Показуємо бургер-меню */
+    }
+
+    header .menu-toggle span{
+        border-radius: 10px;
+    }
+
+    nav.main-nav.open {
+        opacity: 1; /* Відображаємо меню */
+        transform: translateY(0); /* Анімація переміщення */
+        pointer-events: auto; /* Дозволяємо взаємодію після відкриття меню */
+        transition: opacity 0.3s ease, transform 0.3s ease; /* Плавний перехід */
+    }
+
+    nav.main-nav ul.nav__links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav.main-nav ul.nav__links li {
+        margin: 15px 0;
+    }
+
+    nav.main-nav ul.nav__links li a {
+        font-size: 18px;
+    }
+}
+
+
+@media (min-width: 801px) and (max-width: 1450px) {
+    header {
+        padding: 50px;
+    }
+}

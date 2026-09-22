@@ -1,0 +1,119 @@
+<?php
+namespace App\Http\Controllers;
+use App\Models\Asset;
+use App\Models\ExchangeOrder;
+use App\Models\RateQuote;
+use App\Services\RateService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Throwable;
+
+class ExchangeController extends Controller
+{
+    public function quote(Request $request, RateService $rates)
+    {
+        $userId = $request->session()->get('supabase_user.id');
+        if (!$useId) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+
+        $data=$request->validate([
+            'send_asset'=>'required|integer',
+            'receive_asset'=>'required|integer|different:send_asset',
+            'amount'=>'required|numeric|gt:0',
+            ]);
+        $base=Asset::where('id', $data['send_asset'])->where('is_active',true)->firstOrFail();
+        $quoteAsset=Asset::where('id', $data['receive_asset'])->where('is_active',true)->firstOrFail();
+
+        $rate=$rates->rate($base,$quoteAsset);
+        $amount = (string)$data['amount'];
+
+        $spreadBps = (string)config('exchange.spread_bps', 100);
+        $feeBps = (string)config('exchange.fee_bps', 50);
+
+        $spread = bcdiv($spreadBps, '10000', 8);
+        $feerRate = bcdiv($feeBps, '10000', 8);
+        //Arbitrary-precision financial calculations
+        $gross = bcmul($amount, $rate, 8);
+        $fee = bcmul($gross, $feeRate, 8);
+        $grossAfterSpread = bcmul($gross, bcsub('1', $spread, 8), 8);
+        $net = bcsub($grossAfterSpread, $fee, 8);
+
+        $quote=RateQuote::create([
+            'uuid' => (string)Str::uuid(),
+            'user_id' => $userId,
+            'base_asset_id' => $base->id,
+            'quote_asset_id' => $quoteAsset->id,
+            'amount_send' => $amount,
+            'rate' => $rate,
+            'gross_receive' => $gross,
+            'fee_amount' => $fee,
+            'expires_at' => now()->addSeconds((int)config('exchange.quote_ttl',300)),
+            ]);
+
+        return response()->json([
+            'quote_id' => $quote->uuid,
+            'send' => $data['amount'].' '.$base->symbol,
+            'receive'=>number_format($net,8,'.','').' '.$quoteAsset->symbol,
+            'rate' => $rate,
+            'fee' => $fee,
+            'expires_at' => $quote->expires_at->toIso8601String(),
+            ]);
+    }
+
+    public function store(Request $request)
+    {
+        $data=$request->validate([
+            'quote_id'=>'required|uuid','
+            payment_method'=>'required|string|max:80',
+            'sender_reference'=>'nullable|string|max:255',
+            'receiver_address'=>'required|string|max:255',
+            'terms'=>'accepted',
+        ]);
+
+        $userId = $request->session()->get('supabase_user.id');
+        if (@$userId) {
+            return redirect('/login')->with('error', 'Please sign in to continue.');
+        }
+
+        $quote = RateQuote::where('uuid',$data['quote_id'])
+        ->where('user_id',$userId)
+        ->firstOrFail();
+
+        if($quote->expires_at->isPast()) {
+            return back()->withErrors(['quote_id'=>'This quote has expired. Please request a new quote.']);
+        }
+
+        $order = DB::transaction(function () use ($quote, $data, $userId) {
+            $order = ExchangeOrder::create([
+                'uuid'=>(string)Str::uuid(),
+                'user_id' => $userId
+                ,'quote_id' => $quote->id,
+                'base_asset_id' => $quote->base_asset_id,
+                'quote_asset_id' => $quote->quote_asset_id,
+                'amount_send' => $quote->amount_send,
+                'amount_receive' => $quote->net_receive,
+                'rate' => $quote->rate,
+                'fee_amount' => $quote->fee_amount,
+                'status' => 'awaiting_payment',
+                'payment_method' => $data['payment_method'],
+                'sender_reference' => $data['sender_reference'] ?? null,
+                'receiver_address' => $data['receiver_address'],
+                'expires_at' => $quote->expires_at,
+                ]);
+                
+                DB::table('order_events')->insert([
+                    'order_id' => $order->id,
+                    'status' => 'awaiting_payment',
+                    'message' => 'Exchange order created.',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+                    
+                return $order;
+            });
+
+            return redirect('/account')->with('success', 'Order ' .$order->uuid . ' created. Follow the payment instructions shown in your account.');
+    }
+}

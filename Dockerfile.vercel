@@ -1,0 +1,11 @@
+FROM dunglas/frankenphp:1-php8.3-bookworm
+RUN install-php-extensions pdo_pgsql mbstring intl opcache bcmath zip
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+WORKDIR /app
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+COPY . .
+RUN php artisan config:clear && php artisan route:clear && php artisan view:clear
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-80} -t public public/index.php"]

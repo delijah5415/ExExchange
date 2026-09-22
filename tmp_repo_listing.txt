@@ -1,0 +1,125 @@
+.
+./.editorconfig
+./.env.example
+./.git
+./.gitattributes
+./.gitignore
+./BUILD_REPORT.txt
+./CryptoExchange-production.zip
+./Dockerfile.vercel
+./LICENSE
+./README.md
+./VERCEL_DEPLOYMENT.md
+./app
+./app/Http
+./app/Models
+./app/Providers
+./app/Services
+./app/Support
+./artisan
+./bootstrap
+./bootstrap/app.php
+./bootstrap/cache
+./bootstrap/providers.php
+./composer.json
+./composer.lock
+./config
+./config/app.php
+./config/auth.php
+./config/cache.php
+./config/database.php
+./config/exchange.php
+./config/filesystems.php
+./config/logging.php
+./config/mail.php
+./config/queue.php
+./config/services.php
+./config/session.php
+./database
+./database/.gitignore
+./database/factories
+./database/migrations
+./database/seeders
+./package.json
+./phpunit.xml
+./postcss.config.js
+./public
+./public/.htaccess
+./public/css
+./public/favicon.ico
+./public/images
+./public/index.php
+./public/js
+./public/robots.txt
+./resources
+./resources/css
+./resources/js
+./resources/views
+./routes
+./routes/console.php
+./routes/web.php
+./storage
+./storage/app
+./storage/framework
+./storage/logs
+./tailwind.config.js
+./tests
+./tests/Feature
+./tests/TestCase.php
+./tests/Unit
+./tmp_filelist.txt
+./tmp_repo_listing.txt
+./vite.config.js
+=== STORAGE/BOOTSTRAP/TESTS FILES ===
+bootstrap/app.php
+bootstrap/cache/.gitignore
+bootstrap/cache/packages.php
+bootstrap/cache/services.php
+bootstrap/providers.php
+storage/app/.gitignore
+storage/app/private/.gitignore
+storage/app/public/.gitignore
+storage/framework/.gitignore
+storage/framework/cache/.gitignore
+storage/framework/sessions/.gitignore
+storage/framework/testing/.gitignore
+storage/framework/views/.gitignore
+storage/logs/.gitignore
+tests/Feature/ExampleTest.php
+tests/TestCase.php
+tests/Unit/ExampleTest.php
+=== ROOT LS ===
+total 5892
+drwxr-xr-x+ 13 codespace codespace    4096 Sep 22 04:36 .
+drwxr-xrwx+  5 codespace root         4096 Sep 22 04:06 ..
+-rw-r--r--   1 codespace codespace     258 Nov 10  2025 .editorconfig
+-rw-r--r--   1 codespace codespace     895 Sep 22 03:37 .env.example
+drwxrwxrwx+  8 codespace root         4096 Sep 22 04:35 .git
+-rw-r--r--   1 codespace codespace     186 Nov 10  2025 .gitattributes
+-rw-r--r--   1 codespace codespace     278 Nov 10  2025 .gitignore
+-rw-r--r--   1 codespace codespace     778 Sep 22 03:38 BUILD_REPORT.txt
+-rw-rw-rw-   1 codespace root      5610678 Sep 22 04:06 CryptoExchange-production.zip
+-rw-r--r--   1 codespace codespace     511 Sep 22 03:37 Dockerfile.vercel
+-rw-r--r--   1 codespace codespace    1063 Nov 10  2025 LICENSE
+-rw-r--r--   1 codespace codespace    1468 Sep 22 03:37 README.md
+-rw-r--r--   1 codespace codespace    1777 Sep 22 03:37 VERCEL_DEPLOYMENT.md
+drwxr-xr-x+  7 codespace codespace    4096 Sep 22 03:35 app
+-rw-r--r--   1 codespace codespace     350 Nov 10  2025 artisan
+drwxr-xr-x+  3 codespace codespace    4096 Nov 10  2025 bootstrap
+-rw-r--r--   1 codespace codespace    2251 Nov 10  2025 composer.json
+-rw-r--r--   1 codespace codespace  288158 Nov 10  2025 composer.lock
+drwxr-xr-x+  2 codespace codespace    4096 Sep 22 03:36 config
+drwxr-xr-x+  5 codespace codespace    4096 Nov 10  2025 database
+-rw-r--r--   1 codespace codespace     378 Nov 10  2025 package.json
+-rw-r--r--   1 codespace codespace    1191 Nov 10  2025 phpunit.xml
+-rw-r--r--   1 codespace codespace      93 Nov 10  2025 postcss.config.js
+drwxr-xr-x+  5 codespace codespace    4096 Nov 10  2025 public
+drwxr-xr-x+  5 codespace codespace    4096 Nov 10  2025 resources
+drwxr-xr-x+  2 codespace codespace    4096 Nov 10  2025 routes
+drwxr-xr-x+  5 codespace codespace    4096 Nov 10  2025 storage
+-rw-r--r--   1 codespace codespace     551 Nov 10  2025 tailwind.config.js
+drwxr-xr-x+  4 codespace codespace    4096 Nov 10  2025 tests
+-rw-r--rw-   1 codespace codespace    5588 Sep 22 04:31 tmp_filelist.txt
+-rw-r--rw-   1 codespace codespace    1729 Sep 22 04:36 tmp_repo_listing.txt
+drwxr-xrw-+ 39 codespace codespace    4096 Sep 22 04:19 vendor
+-rw-r--r--   1 codespace codespace     263 Nov 10  2025 vite.config.js

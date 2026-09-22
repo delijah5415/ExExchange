@@ -1,0 +1,235 @@
+/* Слайдер для відгуків */
+.reviews-slider {
+    display: flex; 
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Контейнер для слайдера і фото */
+.content-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10%;
+}
+
+/* Контейнер для слайдера */
+.slider-container {
+    position: relative; /* Батьківський блок для стрілок */
+    flex: 2; 
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+/* Слайдер */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.review-slide {
+    flex: 1;
+    min-width: 100%;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+    text-align: left;
+}
+
+.review-slide h3 {
+    font-size: 1.5rem;
+    color: #ecf0f1;
+    margin-bottom: 10px;
+}
+
+.review-slide p {
+    font-size: 1rem;
+    color: #d9dcdd;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.review-slide .date {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #d9dcdd;
+}
+
+/* Кнопки слайдера */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000b1b2a;
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border: none;
+    width: 35px;
+    height: 100%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.prev-btn {
+    left: 0; /* Прив'язка до контейнера слайдера */
+}
+
+.next-btn {
+    right: 0; /* Прив'язка до контейнера слайдера */
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background-color: #000b1b46;
+}
+
+/* Блок для фото */
+.review-image {
+    text-align: center;
+}
+
+.review-image img {
+    max-width: 400px;
+    border-radius: 15px;
+}
+
+/* Адаптив */
+@media (min-width: 801px) and (max-width: 1000px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .slider-container {
+        order: 1;
+        width: 100%;
+        padding: 0;
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .review-slide {
+        flex: 1 1 auto;
+        padding: 20px 55px 20px 55px;
+        background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+        text-align: left;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .review-slide h3 {
+        font-size: 1.2rem; 
+        margin-bottom: 10px;
+        color: #ecf0f1;
+    }
+
+    .review-slide p {
+        font-size: 1rem; 
+        line-height: 1.5;
+        color: #d9dcdd;
+    }
+
+    .review-slide .date {
+        font-size: 0.9rem; 
+        font-style: italic;
+        color: #d9dcdd;
+    }
+
+    .review-image {
+        order: 2;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .review-image img {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .prev-btn, .next-btn {
+        width: 45px;
+        height: 100%;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 800px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .slider-container {
+        order: 1;
+        width: 100%;
+        padding: 0;
+        margin: 0 auto;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .review-slide {
+        flex: 1 1 auto;
+        padding: 20px 55px 20px 55px;
+        background: linear-gradient(135deg, #005db9 0%, #0074D9 100%);
+        text-align: left;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .review-slide h3 {
+        font-size: 1.2rem; 
+        margin-bottom: 10px;
+        color: #ecf0f1;
+    }
+
+    .review-slide p {
+        font-size: 1rem; 
+        line-height: 1.5;
+        color: #d9dcdd;
+    }
+
+    .review-slide .date {
+        font-size: 0.9rem; 
+        font-style: italic;
+        color: #d9dcdd;
+    }
+
+    .review-image {
+        order: 2;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .review-image img {
+        max-width: 300px;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .prev-btn, .next-btn {
+        width: 45px;
+        height: 100%;
+        font-size: 20px;
+    }
+}
