@@ -143,7 +143,11 @@
 
     .content_wrapper {
         flex-direction: column;
+<<<<<<< HEAD
         align-items: flex-start;
+=======
+        align-items: left;
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
         gap: 20px;
     }
 

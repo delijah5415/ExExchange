@@ -4,6 +4,7 @@
     width: 40px;
   }
   .loader {
+<<<<<<< HEAD
     position: fixed;
     top: 0;
     left: 0;
@@ -19,6 +20,23 @@
   
   .loader-hidden {
     display: none;
+=======
+    position: fixed; /* Фіксуємо на екрані */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Покриває весь екран по ширині */
+    height: 100vh; /* Покриває весь екран по висоті */
+    display: flex; /* Центруємо вміст */
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    z-index: 9999; /* Встановлюємо високу видимість */
+    transition: opacity 0.5s ease; /* Плавне зникнення */
+  }
+  
+  .loader-hidden {
+    display: none; /* Приховуємо завантажувач */
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
   }
   .box {
     position: relative;

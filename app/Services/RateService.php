@@ -1,5 +1,8 @@
 <?php
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
 namespace App\Services;
 
 use App\Models\Asset;
@@ -8,6 +11,7 @@ use RuntimeException;
 
 class RateService
 {
+<<<<<<< HEAD
     public function rate(Asset $base, Asset $quote): string
     {
         if ($base->id === $quote->id) {
@@ -39,5 +43,18 @@ class RateService
         }
 
         return (string) bcdiv((string)$b, (string)$q, 8);
+=======
+    public function rate(Asset $base, Asset $quote): float
+    {
+        if ($base->id === $quote->id) return 1.0;
+        if (!$base->coingecko_id || !$quote->coingecko_id) throw new RuntimeException('A live market identifier is not configured for this asset pair.');
+        $url=rtrim((string)config('services.rates.url'),'\/');
+        $response=Http::timeout(8)->retry(2,250)->get($url,['ids'=>$base->coingecko_id.','.$quote->coingecko_id,'vs_currencies'=>'usd']);
+        if($response->failed()) throw new RuntimeException('Live rate provider is temporarily unavailable.');
+        $data=$response->json();
+        $b=(float)($data[$base->coingecko_id]['usd']??0); $q=(float)($data[$quote->coingecko_id]['usd']??0);
+        if($b<=0 || $q<=0) throw new RuntimeException('Live rate is unavailable for this pair.');
+        return $b/$q;
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
     }
 }

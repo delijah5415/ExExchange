@@ -16,9 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const exchangeRateElement = document.querySelector('.exchange-rate p');
 
+<<<<<<< HEAD
     // Declared API_URL constant
     const API_URL = 'https://min-api.cryptocompare.com/data/price';
 
+=======
+    // API URL for fetching exchange rates
+    //const API_URL = 'https://min-api.cryptocompare.com/data/price';
+
+    // Supported currencies
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
     const supportedCurrencies = {
         BTC: 'Bitcoin',
         ETH: 'Ethereum',
@@ -32,10 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch exchange rates for all supported currencies
     async function fetchExchangeRates() {
+<<<<<<< HEAD
         if (!exchangeRateElement) return;
 
         const baseCurrency = 'USD'; // Fetch rates relative to USD
         const symbols = Object.keys(supportedCurrencies).join();
+=======
+        const baseCurrency = 'USD'; // Fetch rates relative to USD
+        const symbols = Object.keys(supportedCurrencies).join(',');
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
 
         try {
             const response = await fetch(`${API_URL}?fsym=${baseCurrency}&tsyms=${symbols}`);
@@ -127,6 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Refresh exchange rates every 30 seconds
+<<<<<<< HEAD
     setInterval(fetchExchangeRates(), 30000);
+=======
+    setInterval(() => {
+        fetchExchangeRates();
+    }, 30000);
+
+    // Initial fetch of exchange rates
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
     fetchExchangeRates();
 });

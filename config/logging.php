@@ -18,7 +18,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'default' => env('LOG_CHANNEL', env('APP_ENV') === 'production' ? : 'stack'),
+=======
+    'default' => env('LOG_CHANNEL', 'stack'),
+>>>>>>> 1553df9ff9197e2ee5364a3b590da2338cb45ecc
 
     /*
     |--------------------------------------------------------------------------
