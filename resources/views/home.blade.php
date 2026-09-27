@@ -13,7 +13,7 @@
         </div>
 
         <!-- PayPal Hosted Button Container -->
-        <div id="paypal-container-YOUR_HOSTED_BUTTON_ID" class="paypal-wrapper"></div>
+        <div id="PLDUTTW4EA9B6" class="paypal-wrapper"></div>
 
         <div class="trust">
             <span>✓ Server-side pricing</span>
